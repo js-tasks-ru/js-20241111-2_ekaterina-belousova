@@ -5,12 +5,6 @@
  * @returns {object} - returns the new object
  */
 
-const fruits = {
-  apple: 2,
-  orange: 4,
-  banana: 3
-};
-
 export const omit = (obj, ...fields) => {
   const object = Object.entries(obj);
   let newArray = [];
@@ -25,4 +19,3 @@ export const omit = (obj, ...fields) => {
   return newObj;
 };
 
-omit(fruits, 'apple', 'banana');

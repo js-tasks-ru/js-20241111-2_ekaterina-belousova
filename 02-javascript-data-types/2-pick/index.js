@@ -5,12 +5,6 @@
  * @returns {object} - returns the new object
  */
 
-const fruits = {
-  apple: 2,
-  orange: 4,
-  banana: 3
-};
-
 export const pick = (obj, ...fields) => {
   const object = Object.entries(obj);
   let newArray = [];
@@ -23,5 +17,3 @@ export const pick = (obj, ...fields) => {
   newObj = Object.fromEntries(newArray);
   return newObj;
 };
-
-pick(fruits, 'apple', 'banana');

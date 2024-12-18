@@ -23,6 +23,7 @@ export default class ColumnChart {
       element.classList.add("column-chart");
     } else {
       element.classList.add("column-chart_loading");
+      element.classList.add("column-chart");
     }
     element.style.setProperty('--chart-height', `${this.chartHeight}`);
     element.innerHTML = template;

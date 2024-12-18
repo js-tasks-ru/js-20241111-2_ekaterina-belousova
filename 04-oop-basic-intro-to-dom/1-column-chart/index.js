@@ -9,12 +9,12 @@ export default class ColumnChart {
     this.value = value;
     this.link = link;
     this.formatHeading = formatHeading;
-    this.element = this.addTemplate(this.renderer());
+    this.element = this.addTemplate(this.createTemplate());
   }
 
   update(data) {
     this.data = data;
-    this.element = this.addTemplate(this.renderer());
+    this.element = this.addTemplate(this.createTemplate());
   }
 
   addTemplate(template) {
@@ -45,7 +45,7 @@ export default class ColumnChart {
     return `<div data-element="body" class="column-chart__chart">${chartColumns}</div>`;
   }
 
-  renderer() {
+  createTemplate() {
     return `
       <div class="column-chart__title">
       Total ${this.label}

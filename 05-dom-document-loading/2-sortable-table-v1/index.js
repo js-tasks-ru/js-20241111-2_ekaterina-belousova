@@ -53,10 +53,10 @@ export default class SortableTable {
     }
   }
 
-  createTableBody() {
+  createTableBody(data) {
     return `
     <div data-element="body" class="sortable-table__body">
-        ${this.data.map((elem) => this.createTableRow(elem)).join("")}
+        ${data.map((elem) => this.createTableRow(elem)).join("")}
     </div>
           `;
   }
@@ -94,7 +94,7 @@ export default class SortableTable {
     return `
     <div class="sortable-table">
     ${this.createTableHeader()}
-    ${this.createTableBody()}
+    ${this.createTableBody(this.data)}
     </div>
     <div data-element="loading" class="loading-line sortable-table__loading-line"></div>
     <div data-element="emptyPlaceholder" class="sortable-table__empty-placeholder">

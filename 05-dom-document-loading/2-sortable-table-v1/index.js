@@ -10,7 +10,7 @@ export default class SortableTable {
   }
 
   renderTable() {
-    this.element = this.addTemplate(this.createTable());
+    this.element = this.createElement(this.createTable());
   }
 
   selectSubElements() {
@@ -21,7 +21,7 @@ export default class SortableTable {
       );
   }
 
-  addTemplate(template) {
+  createElement(template) {
     const element = document.createElement('div');
     element.innerHTML = template;
     return element.firstElementChild;
@@ -29,7 +29,7 @@ export default class SortableTable {
 
   createTableHeader() {
     return `<div data-element="header" class="sortable-table__header sortable-table__row">
-    ${this.headerConfig.map(elem => `<div class="sortable-table__cell" data-id="${elem.id}" data-sortable="${elem.sortable}" data-order="asc">
+    ${this.headerConfig.map(elem => `<div class="sortable-table__cell" data-sortable="${elem.sortable}" data-order="asc">
     <span>${elem.title}</span>
     <span data-element="arrow" class="sortable-table__sort-arrow">
     <span class="sort-arrow"></span>
@@ -54,11 +54,7 @@ export default class SortableTable {
   }
 
   createTableBody(data) {
-    return `
-    <div data-element="body" class="sortable-table__body">
-        ${data.map((elem) => this.createTableRow(elem)).join("")}
-    </div>
-          `;
+    return data.map((elem) => this.createTableRow(elem)).join("");
   }
 
   sort(field, order) {
@@ -94,15 +90,9 @@ export default class SortableTable {
     return `
     <div class="sortable-table">
     ${this.createTableHeader()}
-    ${this.createTableBody(this.data)}
-    </div>
-    <div data-element="loading" class="loading-line sortable-table__loading-line"></div>
-    <div data-element="emptyPlaceholder" class="sortable-table__empty-placeholder">
-      <div>
-        <p>No products satisfies your filter criteria</p>
-        <button type="button" class="button-primary-outline">Reset all filters</button>
-      </div>
-    </div>`;
+    <div data-element="body" class="sortable-table__body">
+      ${this.createTableBody(this.data)}
+    </div>`
   }
 
   remove() {

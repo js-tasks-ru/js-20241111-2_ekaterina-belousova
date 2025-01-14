@@ -3,18 +3,21 @@ export default class NotificationMessage {
   element;
   timer;
 
-  constructor(message, {duration, type} = {}) {
-    this.message = message;
+  constructor(message = '', {
+    duration = 2000,
+    type = 'success'
+  } = {}) {
     this.duration = duration;
     this.type = type;
+    this.message = message;
     this.element = this.createNotificationTemplate(this.createNotification());
   }
 
-  show() {
+  show(targetElement = document.body) {
     if (NotificationMessage.lastNotificationShown) {
       NotificationMessage.lastNotificationShown.destroy();
     }
-    document.body.appendChild(this.element);
+    targetElement.appendChild(this.element);
     NotificationMessage.lastNotificationShown = this;
     this.timer = setTimeout(() => this.remove(), this.duration);
   }
